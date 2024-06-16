@@ -5,7 +5,7 @@
     padding: 0 10px;
     background-color: #4357692d;
     border-radius: 10px;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: flex-end;
     color: white;

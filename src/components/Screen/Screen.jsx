@@ -1,25 +1,19 @@
 
 // import { Textfit } from "react-textfit";
+import { AutoTextSize } from "auto-text-size";
 import "./Screen.css";
 
 const Screen = ({ value }) => {
     return (
-        // <Textfit className="screen" mode="single" max={70}>
-        //     {value}
-        // </Textfit>
-
-        <div className="screen" mode="single" max={70}>
+        <AutoTextSize
+            className="screen"
+            mode="box"
+            minFontSizePx={14}
+            maxFontSizePx={70}
+        >
             {value}
-        </div>
+        </AutoTextSize >
 
-
-        // <AutoTextSize
-        //     className="screen"
-        //     maxSize={70} // equivalent to max={70}
-        //     minSize={14} // optional, default is 14
-        // >
-        //     {value}
-        // </AutoTextSize>
     )
 };
 

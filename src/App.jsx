@@ -15,7 +15,7 @@ import {
   currentNumber,
   emptyNumber,
 } from "./feature/number/numberSlice.jsx";
-import { evaluatePostfix } from "./utils/calculatorLogic.js";
+import { calculateAnswer } from "./utils/calculatorLogic.js";
 import { useState } from "react";
 
 const App = () => {
@@ -23,15 +23,47 @@ const App = () => {
   let isOperator = ["( )", "%", "/", "*", "-", "+", "."];
   const [firstClicked, setFirstClicked] = useState(true);
   const dispatch = useDispatch();
+
+  function transformExp(expression) {
+    const result = [];
+    let temp = "";
+    for (let char of expression) {
+      if (!isNaN(char)) {
+        temp += char;
+      } else {
+        if (temp !== "") {
+          result.push(temp);
+          temp = "";
+        }
+        result.push(char);
+      }
+    }
+    if (temp !== "") {
+      result.push(temp);
+    }
+    return result;
+  }
+
   const handleButtonClick = btn => {
+    // Clear console
     if (btn === "C") {
       setFirstClicked(true);
       return dispatch(clearNumber());
     }
+    // Evaluate expression
     if (btn === "=") {
-      const res = evaluatePostfix(number);
-      return dispatch(currentNumber(Number(res)));
-    } else {
+      const res = calculateAnswer(transformExp(number));
+      if (isNaN(res)) {
+        dispatch(clearNumber());
+        return dispatch(currentNumber("Invalid Expression"));
+      }
+      dispatch(clearNumber());
+      dispatch(currentNumber(Number(res).toPrecision(4)));
+      setFirstClicked(true);
+      return;
+    }
+    // Any other number pressed
+    else {
       if (firstClicked) {
         setFirstClicked(false);
         dispatch(emptyNumber());

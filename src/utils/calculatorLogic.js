@@ -17,7 +17,7 @@ const getPrecedence = (op) => {
     }
 }
 
-export const infixToPostfix = (exp) => {
+const infixToPostfix = (exp) => {
     const stack = new Stack();
     let res = [];
     for (let token of exp) {
@@ -53,7 +53,7 @@ export const infixToPostfix = (exp) => {
     return res;
 }
 
-export const evaluatePostfix = (exp) => {
+const evaluatePostfix = (exp) => {
     const stack = new Stack();
     for (let token of exp) {
         if (!isOperator(token)) {
@@ -98,6 +98,7 @@ export const evaluatePostfix = (exp) => {
     return stack.pop();
 }
 
-export const createExpression = (btn) => {
-    // code here
+export const calculateAnswer = (expression) => {
+    const postfix = infixToPostfix(expression);
+    return evaluatePostfix(postfix);
 }

@@ -1,8 +1,3 @@
-// import Screen from "./components/screen/screen";
-// import Wrapper from "./components/wrapper/wrapper";
-// import Button from "./components/Button/Button";
-// import ButtonBox from "./components/ButtonBox/ButtonBox";
-
 import Wrapper from "./components/Wrapper/Wrapper.jsx";
 import Screen from "./components/Screen/Screen.jsx";
 import Button from "./components/Button/Button.jsx";

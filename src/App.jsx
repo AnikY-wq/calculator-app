@@ -17,6 +17,7 @@ import {
 } from "./feature/number/numberSlice.jsx";
 import { calculateAnswer } from "./utils/calculatorLogic.js";
 import { useState } from "react";
+import CalculatorProvider from "./context/calculatorContext.jsx";
 
 const App = () => {
   const number = useSelector(state => state.number.value);
@@ -74,21 +75,36 @@ const App = () => {
     }
   };
   return (
-    <Wrapper>
-      <Screen value={number} />
-      <ButtonBox>
-        {btnValues.flat().map((btn, i) => {
-          return (
+    // <Wrapper>
+    //   <Screen value={number} />
+    //   <ButtonBox>
+    //     {btnValues.flat().map((btn, i) => {
+    //       return (
+    //         <Button
+    //           key={i}
+    //           className={btn === "=" ? "equals" : ""}
+    //           value={btn}
+    //           onClick={() => handleButtonClick(btn)}
+    //         />
+    //       );
+    //     })}
+    //   </ButtonBox>
+    // </Wrapper>
+    <CalculatorProvider>
+      <Wrapper>
+        <Screen />
+        <ButtonBox>
+          {btnValues.flat().map((btn, i) =>
             <Button
-              key={i}
-              className={btn === "=" ? "equals" : ""}
               value={btn}
-              onClick={() => handleButtonClick(btn)}
+              key={i}
             />
-          );
-        })}
-      </ButtonBox>
-    </Wrapper>
+          )}
+        </ButtonBox>
+      </Wrapper>
+    </CalculatorProvider>
+
+
   );
 };
 

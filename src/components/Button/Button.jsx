@@ -1,10 +1,21 @@
-import "./Button.css";
+const getClassName = (btn) => {
+    const classNames = {
+        "=": "equals",
+        "+": "operator",
+        "x": "operator",
+        "-": "operator",
+        "/": "operator",
+        "C": "clear"
+    }
+    return classNames[btn]
+}
 
-const Button = ({ className, value, onClick }) => {
+const Button = ({ value, onClick }) => {
     return (
-        <button className={className} onClick={onClick}>
+        <button className={`${getClassName(value)} button`
+        } onClick={onClick} >
             {value}
-        </button>
+        </button >
     );
 };
 
